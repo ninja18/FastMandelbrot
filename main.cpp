@@ -51,10 +51,8 @@ int main() {
   if (init_SDL(window, renderer) < NO_ERROR) {
     exit(-1);
   }
-  if (!window) {
-    fmt::print("window null");
-    exit(-1);
-  }
+
+  std::chrono::steady_clock::time_point startTime = std::chrono::steady_clock::now();
 
   for (double x = 0; x < 1.0; x += 0.001) {
     for (double y = 0; y < 1.0; y += 0.001) {
@@ -75,6 +73,9 @@ int main() {
     }
   }
 
+  std::chrono::steady_clock::time_point stopTime = std::chrono::steady_clock::now();
+  double dt = std::chrono::duration_cast<std::chrono::duration<double>>(stopTime - startTime).count();
+
   SDL_RenderPresent(renderer);
   bool is_running = true;
   SDL_Event event;
@@ -87,6 +88,7 @@ int main() {
     SDL_Delay(16);
   }
 
+  fmt::print("time taken: {} seconds", dt);
   SDL_DestroyWindow(window);
   SDL_Quit();
 

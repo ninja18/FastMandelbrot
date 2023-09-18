@@ -7,10 +7,6 @@ project(mandelbrotSet
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
-# add_library(fill_this)
-# link_directories(fill_this)
-# include_directories(fill_this)
-# target_include_directories(fill_this)
 find_package(fmt CONFIG REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 
